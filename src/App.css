@@ -2,3 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+html, 
+body {
+  margin: 0;
+  overflow: hidden;
+}
+#root {
+  height: 100vh;
+  margin: 0;
+  background-color: #111;
+}
+
+.app {
+  height: 100%;
+}
