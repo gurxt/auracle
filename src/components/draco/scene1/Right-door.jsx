@@ -7,12 +7,14 @@ import React, { useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { MathUtils } from 'three'
 import { useFrame } from '@react-three/fiber'
+import { setCurrentScene } from '../../../slices/scene'
+import { useDispatch } from 'react-redux'
 
 export function RightDoor(props) {
   const { nodes, materials } = useGLTF('/right-door-transformed.glb')
   const ref = useRef()
   const [hovered, setHovered] = useState(false)
-  const [selected, setSelected] = useState(false)
+  const dispatch = useDispatch()
 
   useFrame(() => {
       ref.current.position.z = hovered
@@ -28,8 +30,8 @@ export function RightDoor(props) {
     <group {...props} dispose={null}>
       <mesh 
           ref={ref}
-          onPointerDown={() => {
-            setSelected(!selected)
+          onClick={() => {
+            dispatch(setCurrentScene(2))
           }}
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)} 

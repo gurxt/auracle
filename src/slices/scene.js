@@ -9,7 +9,7 @@ export const sceneSlice = createSlice({
   initialState,
   reducers: {
     setCurrentScene: (state, action) => {
-      state.origin = action.payload
+      state.currentScene = action.payload
     }
   }
 })

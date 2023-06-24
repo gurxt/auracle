@@ -3,8 +3,9 @@ import { Canvas } from '@react-three/fiber'
 import { Stats } from '@react-three/drei'
 import { useControls } from 'leva'
 import Scene1 from './components/Scene1'
+import Scene2 from './components/Scene2'
 import { useDispatch, useSelector } from 'react-redux'
-import scene, { selectCurrentScene } from './slices/scene'
+import { selectCurrentScene } from './slices/scene'
 import { useEffect } from 'react'
 
 const App = () => {
@@ -17,13 +18,16 @@ const App = () => {
 
   useEffect(() => {
     console.log(currScene)
-  }, [])
+  }, [currScene])
 
   return (
     <main className="app">
       <Canvas camera={{ position: [0, 0, 0] }} shadows>
         { currScene === 1 && (
           <Scene1 />
+        )} 
+        { currScene === 2 && (
+          <Scene2 />
         )} 
         { show && (
           <>
