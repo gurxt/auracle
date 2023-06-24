@@ -27,6 +27,8 @@ const Scene2 = () => {
     </directionalLight>
     <OrbitControls
       target={[0, 1, 0]}
+      enablePan={false}
+      enableZoom={false}
       minAzimuthAngle={-Math.PI / 2 }
       maxAzimuthAngle={Math.PI / 2 }
       maxPolarAngle={Math.PI / 2}

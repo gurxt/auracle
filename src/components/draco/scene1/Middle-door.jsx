@@ -6,26 +6,38 @@ Command: npx gltfjsx@6.2.4 .\public\middle-door.glb --transform scale [0.25, 0.2
 import React, { useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { MathUtils } from 'three'
+import { MathUtils, Vector3 } from 'three'
+import { useDispatch } from 'react-redux'
+import { setCurrentScene } from '../../../slices/scene'
 
 export function MiddleDoor(props) {
   const { nodes, materials } = useGLTF('/middle-door-transformed.glb')
   const ref = useRef()
   const [hovered, setHovered] = useState(false)
   const [selected, setSelected] = useState(false)
+  const dispatch = useDispatch()
 
-  useFrame(() => {
+  useFrame(({ camera }) => {
     ref.current.position.z = hovered
       ? MathUtils.lerp(ref.current.position.z, ref.current.position.z - (ref.current.position.z + 1) % 1, 0.025)
       : MathUtils.lerp(ref.current.position.z, -8.927, 0.025)
+  
+    const vec = new Vector3()
+    
+    if (selected) {
+      vec.set(0, 0, -9.44)
+      camera.position.lerp(vec, 0.025)
+      setTimeout(() => {
+        dispatch(setCurrentScene(2))
+      }, 1100)
+    }
   })
+
   return (
     <group {...props} dispose={null}>
       <mesh 
         ref={ref}
-        onPointerDown={() => {
-          setSelected(!selected)
-        }}
+        onPointerDown={() => setSelected(true)}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)} 
         geometry={nodes.StoneGateway003.geometry} material={materials['monastery_stone_floor.003']} position={[-0.02, 2.529, -8.927]} rotation={[-Math.PI / 2, 0, 0.033]} scale={-1} />
