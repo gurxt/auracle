@@ -1,6 +1,9 @@
 import { Environment, OrbitControls } from "@react-three/drei"
 import { useControls } from "leva"
-import { Model } from "./draco/Scene1"
+import { Background } from "./draco/Background"
+import { LeftDoor } from "./draco/Left-door"
+import { RightDoor } from "./draco/Right-door"
+import { MiddleDoor } from "./draco/Middle-door"
 
 const Scene1 = () => {
   const { x, y, z, intensity } = useControls('Light', {
@@ -17,7 +20,10 @@ const Scene1 = () => {
       preset="night"
       background
     />
-    <Model />
+    <LeftDoor />
+    <MiddleDoor />
+    <RightDoor />
+    <Background />
     <directionalLight
       castShadow={true}
       position={[x, y, z]}
