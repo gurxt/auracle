@@ -28,9 +28,9 @@ const Scene1 = () => {
   })
   
   return (
-    <Suspense fallback={null}>
+      <>
       <Environment
-        preset="night"
+        files="./sky.exr"
         background
       />
       <LeftDoor />
@@ -53,7 +53,7 @@ const Scene1 = () => {
         maxPolarAngle={Math.PI / 2}
       />
       */}
-    </Suspense>
+      </>
   )
 }
 

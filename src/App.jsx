@@ -6,6 +6,7 @@ import Scene1 from './components/Scene1'
 import Scene2 from './components/Scene2'
 import { useSelector } from 'react-redux'
 import { selectCurrentScene } from './slices/scene'
+import Controls from './components/Controls'
 
 const App = () => {
   const currScene = useSelector(selectCurrentScene)
@@ -16,7 +17,8 @@ const App = () => {
 
   return (
     <main className="app">
-      <Canvas camera={{ position: [0, 4, 2] }} shadows>
+      <Controls />
+      <Canvas camera={{ position: [0, 0, 2] }} shadows>
         { currScene === 1 && (
           <Scene1 />
         )} 
