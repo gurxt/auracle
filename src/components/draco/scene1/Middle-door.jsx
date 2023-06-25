@@ -26,10 +26,10 @@ export function MiddleDoor(props) {
     
     if (selected) {
       vec.set(0, 0, -9.44)
-      camera.position.lerp(vec, 0.025)
+      camera.position.lerp(vec, 0.015)
       setTimeout(() => {
         dispatch(setCurrentScene(2))
-      }, 1100)
+      }, 1300)
     }
   })
 

@@ -10,8 +10,19 @@ export function Background(props) {
   const { nodes, materials } = useGLTF('/background-draco-transformed.glb')
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.EXPORT_GOOGLE_SAT_WM.geometry} material={materials.coast_sand_rocks_02} position={[1.507, -19.403, -24.072]} rotation={[0.572, 0.017, 3.126]} scale={-0.019} />
+      <mesh geometry={nodes['112_stone_bench'].geometry} material={materials['112_stone_bench']} position={[-5.141, -0.46, 2.445]} rotation={[0, -0.847, -Math.PI]} scale={-0.056} />
       <mesh geometry={nodes.dome.geometry} material={materials['Material.001']} position={[-0.128, 3.839, 2.079]} rotation={[-Math.PI / 2, 0, 1.571]} scale={-0.083} />
+      <mesh geometry={nodes.Justice.geometry} material={materials['statue.001']} position={[6.974, -0.458, -2.779]} rotation={[0, -1.555, 0]} scale={1.168} />
+      <mesh geometry={nodes.EXPORT_GOOGLE_SAT_WM001.geometry} material={materials['coast_sand_rocks_02.003']} position={[-1.239, -20.985, -15.702]} rotation={[-3.021, -0.029, 0.059]} scale={-0.019} />
+      <mesh geometry={nodes.Fountain_concrete_seal.geometry} material={materials.fountain_concrete_seal_1} position={[0.026, -0.48, -2.821]} rotation={[Math.PI, 0, Math.PI]} />
+      <mesh geometry={nodes.grass_clump_big_1.geometry} material={materials.green} position={[2.561, -0.493, 0.666]} rotation={[0, -1.284, 0]} scale={2.144} />
+      <mesh geometry={nodes.grass_clump_big_1001.geometry} material={materials.dried} position={[3.975, -0.498, -1.422]} rotation={[-Math.PI, -0.536, -Math.PI]} scale={2.144} />
+      <mesh geometry={nodes.grass_clump_big_1002.geometry} material={materials['hard dried']} position={[-5.608, -0.498, -3.51]} rotation={[0, 1.212, 0]} scale={2.144} />
+      <mesh geometry={nodes.grass_clump_big_2.geometry} material={materials.green} position={[3.037, -0.499, 3.15]} rotation={[-Math.PI, 0.894, -Math.PI]} scale={2.144} />
+      <mesh geometry={nodes.grass_clump_big_2001.geometry} material={materials.dried} position={[-3.86, -0.499, -5.745]} rotation={[Math.PI, -1.064, Math.PI]} scale={2.144} />
+      <mesh geometry={nodes.grass_clump_big_2002.geometry} material={materials['hard dried']} position={[2.29, -0.499, -6.761]} rotation={[-Math.PI, 0.154, -Math.PI]} scale={2.144} />
+      <mesh geometry={nodes.metal_vase.geometry} material={materials.cobre} position={[6.951, -0.428, -1.256]} scale={1.38} />
+      <mesh geometry={nodes.statue001.geometry} material={materials['statue.001']} position={[-7.787, -0.458, -3.532]} rotation={[-Math.PI, 1.487, -Math.PI]} />
     </group>
   )
 }

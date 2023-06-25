@@ -6,13 +6,12 @@ import Scene1 from './components/Scene1'
 import Scene2 from './components/Scene2'
 import { useSelector } from 'react-redux'
 import { selectCurrentScene } from './slices/scene'
-import { useEffect } from 'react'
 
 const App = () => {
   const currScene = useSelector(selectCurrentScene)
 
   const { show } = useControls('Helpers', {
-    show: true
+    show: false
   })
 
   return (

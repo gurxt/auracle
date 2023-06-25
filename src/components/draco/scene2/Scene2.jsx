@@ -6,10 +6,10 @@ Command: npx gltfjsx@6.2.4 .\public\scene2-draco.glb --transform scale [0.25, 0.
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
-export function Model(props) {
+export function Model({ handleClick }) {
   const { nodes, materials } = useGLTF('/scene2-draco-transformed.glb')
   return (
-    <group {...props} dispose={null}>
+    <group onClick={handleClick} dispose={null}>
       <mesh geometry={nodes.dome.geometry} material={materials['Material.001']} position={[-0.128, 3.839, 2.079]} rotation={[-Math.PI / 2, 0, 1.571]} scale={-0.083} />
       <group position={[0.008, 1.904, -3.762]} rotation={[0, 0.069, 0]} scale={0.163}>
         <mesh geometry={nodes.Plane007.geometry} material={materials['mesh.002']} />

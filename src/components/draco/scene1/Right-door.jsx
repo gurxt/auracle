@@ -29,10 +29,10 @@ export function RightDoor(props) {
     
     if (selected) {
       vec.set(4.918, 0, -7.44)
-      camera.position.lerp(vec, 0.025)
+      camera.position.lerp(vec, 0.015)
       setTimeout(() => {
         dispatch(setCurrentScene(2))
-      }, 1000)
+      }, 1600)
     }
   })
 

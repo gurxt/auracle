@@ -1,8 +1,23 @@
 import { Environment, OrbitControls } from "@react-three/drei"
 import { useControls } from "leva"
 import { Model } from './draco/scene2/Scene2'
+import { Vector3 } from "three"
+import { useFrame, useThree } from "@react-three/fiber"
+import { useEffect } from "react"
+
+const vec = new Vector3()
+
+function Rig() {
+  return useFrame(({ camera, mouse }) => {
+    vec.set(-mouse.x * 1.24, -mouse.y * 1 + 3, camera.position.z)
+    camera.position.lerp(vec, 0.015)
+    camera.lookAt(0, 4, 0)
+  })
+}
 
 const Scene2 = () => {
+  const {camera, mouse} = useThree()
+
   const { x, y, z, intensity } = useControls('Light', {
     x: { value: 0.6, min: -10, max: 10, step: 0.1 },
     y: { value: -3.7, min: -10, max: 10, step: 0.1 },
@@ -10,6 +25,7 @@ const Scene2 = () => {
     intensity: { value: 1, min: -10, max: 10, step: 0.1 },
     castShadow: true
   })
+
   
   return (
     <>
@@ -17,6 +33,7 @@ const Scene2 = () => {
       preset="night"
       background
     />
+    <Rig />    
     <Model />
     <directionalLight
       castShadow={true}
@@ -25,14 +42,6 @@ const Scene2 = () => {
     >
       <mesh><sphereGeometry args={[0.25]} /></mesh>
     </directionalLight>
-    <OrbitControls
-      target={[0, 1, 0]}
-      enablePan={false}
-      enableZoom={false}
-      minAzimuthAngle={-Math.PI / 2 }
-      maxAzimuthAngle={Math.PI / 2 }
-      maxPolarAngle={Math.PI / 2}
-    />
     </>
   )
 }
