@@ -15,6 +15,12 @@ const vec = new Vector3()
 const Scene2 = () => {
   const [show, setShow] = useState(false)
   const [tarots, setTarots] = useState([])
+  const [cardClicked, setCardClicked] = useState({
+    0: false,
+    1: false,
+    2: false
+  })
+
   const { x, y, z, intensity} = useControls({
     x: { value: 13.6, min: -20, max: 20, step: 0.1 },
     y: { value: 12.5, min: -20, max: 20, step: 0.1 },
@@ -25,7 +31,6 @@ const Scene2 = () => {
   const { camera } = useThree()
 
   useEffect(() => {
-    console.log(cards)
     if (camera) {
       camera.position.set(0, 5, -3) // Set the desired camera position
     }
@@ -53,6 +58,10 @@ const Scene2 = () => {
     setShow(true)
   }
 
+  const handleCardClicked = idx => {
+    setCardClicked(prev => ({...prev, [idx]: true })) 
+  }
+
   return (
     <> 
     <Environment
@@ -60,11 +69,16 @@ const Scene2 = () => {
       background
     />
     <Themis show={show} handleShow={handleShow} />
+    { cardClicked[0] && cardClicked[1] && cardClicked[2] && (
+      <mesh>
+        <boxGeometry args={[2, 2]} />
+      </mesh>
+    )}
     { show && (
       <>
-      <LeftCard url={tarots[0]} />
-      <MiddleCard url={tarots[1]} />
-      <RightCard url={tarots[2]} />
+      <LeftCard cardClicked={cardClicked} handleCardClicked={handleCardClicked} url={tarots[0]} />
+      <MiddleCard cardClicked={cardClicked} handleCardClicked={handleCardClicked} url={tarots[1]} />
+      <RightCard cardClicked={cardClicked} handleCardClicked={handleCardClicked} url={tarots[2]} />
       </>
     )}
     <Background />

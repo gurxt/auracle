@@ -26,7 +26,7 @@ const ScenePlayer = () => {
   }
 
   return (
-    <div className="controller_container mt-2 bg-amber-400">
+    <div className="controller_container mt-2 bg-black">
       <div className="w-full flex flex-row justify-between">
         <PhotoIcon className="h-9 w-9 text-white pr-2" />
         <button className="flex-1 text-xl font-bold pr-2">{ sceneHistory[currScene - 1].name }</button>

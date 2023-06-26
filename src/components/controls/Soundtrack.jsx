@@ -59,7 +59,7 @@ const Soundtrack = () => {
   }
 
   return (
-    <div className="controller_container bg-amber-400">
+    <div className="controller_container bg-black">
       <div className="flex flex-row w-full items-center">
         <MusicalNoteIcon className="h-9 w-9 text-white pr-2" />
         <button className="flex-1 text-xl font-bold pr-2">Soundtrack</button>

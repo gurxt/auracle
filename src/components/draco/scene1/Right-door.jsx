@@ -11,27 +11,21 @@ import { selectSceneHistory, setCurrentScene, setSceneHistory } from '../../../s
 import { useDispatch, useSelector } from 'react-redux'
 
 const vec = new Vector3()
-const red = new Color('yellow')
+const black = new Color('black')
 const white = new Color('white')
 
 export function RightDoor(props) {
   const { nodes, materials } = useGLTF('/right-door-transformed.glb')
-  const ref = useRef()
+  const mirrorRef = useRef()
+
   const [hovered, setHovered] = useState(false)
   const [selected, setSelected] = useState(false)
   const dispatch = useDispatch() 
   const history = useSelector(selectSceneHistory)
 
   useFrame(({ camera }) => {
-    ref.current.position.z = hovered
-      ? MathUtils.lerp(ref.current.position.z, ref.current.position.z - (ref.current.position.z + 0.5) % 0.5, 0.025)
-      : MathUtils.lerp(ref.current.position.z, -7.44, 0.025)
-    ref.current.position.x = hovered
-      ? MathUtils.lerp(ref.current.position.x, ref.current.position.x - (ref.current.position.x + 0.5) % 0.5, 0.025)
-      : MathUtils.lerp(ref.current.position.x, 4.918, 0.025)
-      
-    ref.current.material.color.lerp(hovered ? red : white, 0.025)
-    
+    mirrorRef.current.children[0].material.color.lerp(hovered ? black : white, 0.025)
+
     if (selected) {
       vec.set(4.918, 0, -7.44)
       camera.position.lerp(vec, 0.015)
@@ -47,13 +41,16 @@ export function RightDoor(props) {
   }
 
   return (
-    <group {...props} dispose={null}>
-      <mesh 
-          ref={ref}
-          onClick={() => { setSelected(true) ; handleClick()}}
-          onPointerOver={() => setHovered(true)}
-          onPointerOut={() => setHovered(false)} 
-          geometry={nodes.StoneGateway001.geometry} material={materials['monastery_stone_floor.001']} position={[4.918, 2.529, -7.44]} rotation={[-Math.PI / 2, 0, -0.741]} scale={-1} />
+    <group
+      onClick={() => { setSelected(true) ; handleClick()}}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)} 
+     {...props} dispose={null}>
+      <mesh geometry={nodes.StoneGateway001.geometry} material={materials['monastery_stone_floor.001']} position={[4.918, 2.529, -7.44]} rotation={[-Math.PI / 2, 0, -0.741]} scale={-1} />
+      <group ref={mirrorRef} position={[4.858, -0.448, -7.382]} rotation={[-0.003, -0.692, -0.029]} scale={6.655}>
+        <mesh geometry={nodes.mesh004.geometry} material={materials.PaletteMaterial001} />
+        <mesh geometry={nodes.mesh004_1.geometry} material={materials.PaletteMaterial002} />
+      </group>
     </group>
   )
 }

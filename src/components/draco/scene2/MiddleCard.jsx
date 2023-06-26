@@ -5,7 +5,7 @@ import * as THREE from 'three'
 
 const vec = new Vector3()
 
-export function MiddleCard({ url }) {
+export function MiddleCard({ cardClicked, handleCardClicked, url }) {
   const [selected, setSelected] = useState(false)
   const ref = useRef() 
   const {x , y, z, rotation } = { 
@@ -21,7 +21,7 @@ export function MiddleCard({ url }) {
     ref.current.rotation.y = selected
       ? MathUtils.lerp(ref.current.rotation.y, 0, 0.025)
       : MathUtils.lerp(ref.current.rotation.y, rotation, 0.025)
-    })
+  })
 
 
   const random = useLoader(TextureLoader, `../src/assets/tarots/${url}`)
@@ -37,7 +37,7 @@ export function MiddleCard({ url }) {
       name="meshBasicMaterial"
       rotation={[0, rotation, 0]} 
       position={[x, y, z]}
-      onClick={() => setSelected(!selected)}
+      onClick={() => { setSelected(!selected); if (!cardClicked[1]) handleCardClicked(1) }}
     >
       <boxGeometry args={[3, 4.5, 0.05]} />
     </mesh>

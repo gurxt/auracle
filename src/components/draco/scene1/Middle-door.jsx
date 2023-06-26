@@ -11,31 +11,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectSceneHistory, setCurrentScene, setSceneHistory } from '../../../slices/scene'
 
 const vec = new Vector3()
-const red = new Color('yellow')
+const black = new Color('black')
 const white = new Color('white')
 
 export function MiddleDoor(props) {
   const { nodes, materials } = useGLTF('/middle-door-transformed.glb')
-  const ref = useRef()
+  const mirrorRef = useRef()
   const [hovered, setHovered] = useState(false)
   const [selected, setSelected] = useState(false)
   const dispatch = useDispatch()
   const history = useSelector(selectSceneHistory)
 
   useFrame(({ camera }) => {
-    ref.current.position.z = hovered
-      ? MathUtils.lerp(ref.current.position.z, ref.current.position.z - (ref.current.position.z + 1) % 1, 0.025)
-      : MathUtils.lerp(ref.current.position.z, -8.927, 0.025)
-
-
-    ref.current.material.color.lerp(hovered ? red : white, 0.025)
+    mirrorRef.current.children[0].material.color.lerp(hovered ? black : white, 0.025)
 
     if (selected) {
       vec.set(0, 0, -9.44)
       camera.position.lerp(vec, 0.015)
     }
   })
-
 
   const handleClick = () => {
     setTimeout(() => {
@@ -46,13 +40,19 @@ export function MiddleDoor(props) {
   }
 
   return (
-    <group {...props} dispose={null}>
-      <mesh 
-        ref={ref}
-        onClick={() => { setSelected(true) ; handleClick()}}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)} 
-        geometry={nodes.StoneGateway003.geometry} material={materials['monastery_stone_floor.003']} position={[-0.02, 2.529, -8.927]} rotation={[-Math.PI / 2, 0, 0.033]} scale={-1} />
+    <group 
+      onClick={() => { setSelected(true) ; handleClick()}}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)} 
+      {...props} 
+      dispose={null}
+    >
+      <mesh geometry={nodes.StoneGateway003.geometry} material={materials['monastery_stone_floor.003']} position={[-0.02, 2.529, -8.927]} rotation={[-Math.PI / 2, 0, 0.033]} scale={-1} />
+      <mesh geometry={nodes.Cube.geometry} material={materials['Material.007']} position={[-0.237, 3.259, -8.633]} rotation={[0, -0.104, 0]} />
+      <group ref={mirrorRef} position={[-0.018, -0.482, -8.895]} rotation={[-0.002, 0.003, -0.026]} scale={6.655}>
+        <mesh geometry={nodes.mesh001.geometry} material={materials.PaletteMaterial001} />
+        <mesh geometry={nodes.mesh001_1.geometry} material={materials.PaletteMaterial002} />
+      </group>
     </group>
   )
 }

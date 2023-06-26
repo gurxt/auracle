@@ -5,7 +5,7 @@ import * as THREE from 'three'
 
 const vec = new Vector3()
 
-export function RightCard({ url }) {
+export function RightCard({ cardClicked, handleCardClicked, url }) {
   const [selected, setSelected] = useState(false)
   const ref = useRef() 
   const {x , y, z, rotation } = { 
@@ -36,7 +36,7 @@ export function RightCard({ url }) {
       name="meshBasicMaterial"
       rotation={[0, rotation, 0]} 
       position={[x, y, z]}
-      onClick={() => setSelected(!selected)}
+      onClick={() => { setSelected(!selected) ;  if (!cardClicked[2]) handleCardClicked(2) }}
     >
       <boxGeometry args={[2.5, 4.5, 0.05]} />
     </mesh>

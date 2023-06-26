@@ -12,9 +12,9 @@ const vec = new Vector3()
 
 const Scene1 = ({ adjust }) => {
   const { x, y, z, intensity } = useControls('Light', {
-    x: { value: -10.1, min: -20, max: 20, step: 0.1 },
-    y: { value: -3.6, min: -20, max: 20, step: 0.1 },
-    z: { value: 5.8, min: -20, max: 20, step: 0.1 },
+    x: { value: -25, min: -30, max: 30, step: 0.1 },
+    y: { value: 1.6, min: -30, max: 30, step: 0.1 },
+    z: { value: 13.1, min: -30, max: 30, step: 0.1 },
     intensity: { value: 1.45, min: -10, max: 10, step: 0.1 },
     castShadow: true
   })
@@ -47,9 +47,7 @@ const Scene1 = ({ adjust }) => {
         castShadow={true}
         position={[x, y, z]}
         intensity={intensity}
-      >
-        <mesh><sphereGeometry args={[0.25]} /></mesh>
-      </directionalLight>
+      />
       </>
   )
 }
