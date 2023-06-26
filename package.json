@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@heroicons/react": "^2.0.18",
+    "@mui/material": "^5.13.6",
     "@react-spring/three": "^9.7.2",
     "@react-spring/web": "^9.7.2",
     "@react-three/drei": "^9.77.0",
@@ -20,6 +24,7 @@
     "leva": "^0.9.35",
     "postcss": "^8.4.24",
     "react": "^18.2.0",
+    "react-audio-player": "^0.17.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
     "three": "^0.153.0"
@@ -28,8 +33,7 @@
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.0.0",
-    "eslint": "^8.38.0",
-    "eslint-plugin-react": "^7.25.3",
+    "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
     "tailwindcss": "^3.3.2",
