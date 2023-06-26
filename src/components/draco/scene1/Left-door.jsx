@@ -5,10 +5,14 @@ Command: npx gltfjsx@6.2.4 .\public\left-door.glb --transform scale [0.25, 0.25,
 
 import React, { useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { MathUtils, Vector3 } from 'three'
+import { Color, MathUtils, Vector3 } from 'three'
 import { useFrame } from '@react-three/fiber'
 import { setCurrentScene } from '../../../slices/scene'
 import { useDispatch } from 'react-redux'
+
+const vec = new Vector3()
+const red = new Color('yellow')
+const white = new Color('white')
 
 export function LeftDoor(props) {
   const { nodes, materials } = useGLTF('/left-door-transformed.glb')
@@ -19,13 +23,13 @@ export function LeftDoor(props) {
 
   useFrame(({ camera }) => {
     ref.current.position.z = hovered
-      ? MathUtils.lerp(ref.current.position.z, ref.current.position.z - (ref.current.position.z + 0.5) % 0.5, 0.025)
+      ? MathUtils.lerp(ref.current.position.z, ref.current.position.z - (ref.current.position.z + 0.75) % 0.5, 0.025)
       : MathUtils.lerp(ref.current.position.z, -7.247, 0.025)
     ref.current.position.x = hovered
-      ? MathUtils.lerp(ref.current.position.x, ref.current.position.x - (ref.current.position.x + 0.5) % 0.5, 0.025)
+      ? MathUtils.lerp(ref.current.position.x, ref.current.position.x - (ref.current.position.x + 0.75) % 0.5, 0.025)
       : MathUtils.lerp(ref.current.position.x, -4.658, 0.025)
-     
-    const vec = new Vector3()
+
+    ref.current.material.color.lerp(hovered ? red : white, 0.025)
     
     if (selected) {
       vec.set(-4.918, 0, -7.44)

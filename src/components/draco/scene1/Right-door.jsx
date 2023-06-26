@@ -5,10 +5,14 @@ Command: npx gltfjsx@6.2.4 .\public\right-door.glb --transform scale [0.25, 0.25
 
 import React, { useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { MathUtils, Vector3 } from 'three'
+import { Color, MathUtils, Vector3 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { setCurrentScene } from '../../../slices/scene'
 import { useDispatch } from 'react-redux'
+
+const vec = new Vector3()
+const red = new Color('yellow')
+const white = new Color('white')
 
 export function RightDoor(props) {
   const { nodes, materials } = useGLTF('/right-door-transformed.glb')
@@ -25,7 +29,7 @@ export function RightDoor(props) {
       ? MathUtils.lerp(ref.current.position.x, ref.current.position.x - (ref.current.position.x + 0.5) % 0.5, 0.025)
       : MathUtils.lerp(ref.current.position.x, 4.918, 0.025)
       
-    const vec = new Vector3()
+    ref.current.material.color.lerp(hovered ? red : white, 0.025)
     
     if (selected) {
       vec.set(4.918, 0, -7.44)

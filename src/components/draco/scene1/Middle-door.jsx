@@ -6,9 +6,13 @@ Command: npx gltfjsx@6.2.4 .\public\middle-door.glb --transform scale [0.25, 0.2
 import React, { useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { MathUtils, Vector3 } from 'three'
+import { Color, MathUtils, Vector3 } from 'three'
 import { useDispatch } from 'react-redux'
 import { setCurrentScene } from '../../../slices/scene'
+
+const vec = new Vector3()
+const red = new Color('yellow')
+const white = new Color('white')
 
 export function MiddleDoor(props) {
   const { nodes, materials } = useGLTF('/middle-door-transformed.glb')
@@ -21,9 +25,10 @@ export function MiddleDoor(props) {
     ref.current.position.z = hovered
       ? MathUtils.lerp(ref.current.position.z, ref.current.position.z - (ref.current.position.z + 1) % 1, 0.025)
       : MathUtils.lerp(ref.current.position.z, -8.927, 0.025)
-  
-    const vec = new Vector3()
-    
+
+
+    ref.current.material.color.lerp(hovered ? red : white, 0.025)
+
     if (selected) {
       vec.set(0, 0, -9.44)
       camera.position.lerp(vec, 0.015)

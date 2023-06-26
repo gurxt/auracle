@@ -14,18 +14,18 @@ function Rig() {
   return useFrame(({ camera, mouse }) => {
     vec.set(-mouse.x * 1.24, -mouse.y * 1 + 3, camera.position.z)
     camera.position.lerp(vec, 0.025)
-    camera.lookAt(0, 0, -4)
+    camera.lookAt(0, 2, -3)
   })
 }
 
 const Scene1 = () => {
-  // const { x, y, z, intensity } = useControls('Light', {
-  //   x: { value: -10.1, min: -20, max: 20, step: 0.1 },
-  //   y: { value: -3.6, min: -20, max: 20, step: 0.1 },
-  //   z: { value: 5.8, min: -20, max: 20, step: 0.1 },
-  //   intensity: { value: 1.45, min: -10, max: 10, step: 0.1 },
-  //   castShadow: true
-  // })
+  const { x, y, z, intensity } = useControls('Light', {
+    x: { value: -10.1, min: -20, max: 20, step: 0.1 },
+    y: { value: -3.6, min: -20, max: 20, step: 0.1 },
+    z: { value: 5.8, min: -20, max: 20, step: 0.1 },
+    intensity: { value: 1.45, min: -10, max: 10, step: 0.1 },
+    castShadow: true
+  })
   
   return (
       <>
@@ -40,8 +40,8 @@ const Scene1 = () => {
       <Rig />
       <directionalLight
         castShadow={true}
-        position={[-10.1, -3.6, 5.8]}
-        intensity={1.45}
+        position={[x, y, z]}
+        intensity={intensity}
       >
         <mesh><sphereGeometry args={[0.25]} /></mesh>
       </directionalLight>
