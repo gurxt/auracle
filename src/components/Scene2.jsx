@@ -1,46 +1,36 @@
-import { OrbitControls } from "@react-three/drei"
+import { useRef } from "react"
+import { Themis } from "./draco/scene2/Themis"
+import { useControls } from "leva"
 import { useFrame } from "@react-three/fiber"
-import { useRef, useState } from "react"
-import { MathUtils, Vector3 } from "three"
+import { Vector3 } from "three"
 
-const vec = new Vector3() 
+const vec = new Vector3()
 
 const Scene2 = () => {
-  const [selected, setSelected] = useState(false)
-  const ref = useRef() 
+  const ref = useRef()
+  const { x, y, z, intensity} = useControls({
+    x: { value: 13.6, min: -20, max: 20, step: 0.1 },
+    y: { value: 12.5, min: -20, max: 20, step: 0.1 },
+    z: { value: -17.5, min: -20, max: 20, step: 0.1 },
+    intensity: { value: 1, min: 0, max: 3, step: 0.1 },
+  })
 
-  useFrame(({ camera, mouse }) => {
-    vec.set(mouse.x * 1.24, mouse.y * 1 + 3, camera.position.z)
+  useFrame(({ camera, mouse}) => {
+    vec.set(-mouse.x * 1.24, -mouse.y * 1 + 3, camera.position.z)
     camera.position.lerp(vec, 0.025)
     camera.lookAt(0, 1, 0)
-
-    console.log(camera.position)
-
-    ref.current.position.x = selected 
-      ? MathUtils.lerp(ref.current.position.x, camera.position.x, 0.025)
-      : MathUtils.lerp(ref.current.position.x, 4, 0.025)
-
-    ref.current.position.y = selected 
-      ? MathUtils.lerp(ref.current.position.y, camera.position.y - 0.5, 0.025)
-      : MathUtils.lerp(ref.current.position.y, 0.5, 0.025)
-
-    ref.current.position.z = selected 
-      ? MathUtils.lerp(ref.current.position.z, camera.position.z + 2, 0.025)
-      : MathUtils.lerp(ref.current.position.z, 0, 0.025)
   })
 
   return (
     <>
     <gridHelper args={[15, 15]} />
     <axesHelper args={[5]} />
-    <mesh 
-      ref={ref} 
-      onClick={() => setSelected(!selected)}
-      position={[4, 0.5, 0]}
-    >
-      <boxGeometry args={[1, 1]} />
-      <meshBasicMaterial color='red' wireframe />
-    </mesh>
+    <directionalLight intensity={intensity} position={[x, y, z]}>
+      <mesh>
+        <sphereGeometry args={[1]} />
+      </mesh>
+    </directionalLight>
+    <Themis />
     </>
   )
 }
