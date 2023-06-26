@@ -4,11 +4,12 @@ Command: npx gltfjsx@6.2.4 .\public\left-door.glb --transform scale [0.25, 0.25,
 */
 
 import React, { useRef, useState } from 'react'
-import { useGLTF } from '@react-three/drei'
+import { useGLTF, useSelect } from '@react-three/drei'
 import { Color, MathUtils, Vector3 } from 'three'
 import { useFrame } from '@react-three/fiber'
-import { setCurrentScene } from '../../../slices/scene'
-import { useDispatch } from 'react-redux'
+import { setCurrentScene, setSceneHistory } from '../../../slices/scene'
+import { selectSceneHistory } from '../../../slices/scene'
+import { useDispatch, useSelector } from 'react-redux'
 
 const vec = new Vector3()
 const red = new Color('yellow')
@@ -20,6 +21,7 @@ export function LeftDoor(props) {
   const [hovered, setHovered] = useState(false)
   const [selected, setSelected] = useState(false)
   const dispatch = useDispatch()
+  const history = useSelector(selectSceneHistory)
 
   useFrame(({ camera }) => {
     ref.current.position.z = hovered
@@ -34,17 +36,22 @@ export function LeftDoor(props) {
     if (selected) {
       vec.set(-4.918, 0, -7.44)
       camera.position.lerp(vec, 0.015)
-      setTimeout(() => {
-        dispatch(setCurrentScene(2))
-      }, 1500)
     }
   })
+
+  const handleClick = () => {
+    setTimeout(() => {
+      dispatch(setCurrentScene(2))
+      if (!history.some(scene => scene.sceneNumber === 2))
+        dispatch(setSceneHistory([...history, { name: 'Scene2', sceneNumber: 2 }]))
+    }, 1500)
+  }
 
   return (
     <group {...props} dispose={null}>
       <mesh 
         ref={ref}
-        onPointerDown={() => setSelected(true)}
+        onClick={() => { setSelected(true) ; handleClick()}}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
         geometry={nodes.StoneGateway002.geometry} material={materials['monastery_stone_floor.002']} position={[-4.658, 2.529, -7.247]} rotation={[-Math.PI / 2, 0, 0.816]} scale={-1} />

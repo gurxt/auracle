@@ -21,6 +21,6 @@ body {
   @apply fixed z-50 bottom-0 right-0 w-96 max-h-96 bg-black m-2 rounded-xl p-2 bg-opacity-50 text-white;
 }
 
-.controls_music_container {
-  @apply flex flex-row flex-wrap w-full bg-amber-200 bg-opacity-50 rounded-xl p-2 items-center;
+.controller_container {
+  @apply flex flex-row flex-wrap w-full bg-opacity-50 rounded-xl p-2 items-center;
 }

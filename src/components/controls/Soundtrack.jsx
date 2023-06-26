@@ -59,22 +59,22 @@ const Soundtrack = () => {
   }
 
   return (
-    <div className="controls_music_container">
+    <div className="controller_container bg-amber-400">
       <div className="flex flex-row w-full items-center">
         <MusicalNoteIcon className="h-9 w-9 text-white pr-2" />
         <button className="flex-1 text-xl font-bold pr-2">Soundtrack</button>
-        <ChevronDownIcon onClick={() => setOpen(!open)} className="h-9 w-9 text-white pl-2" />
+        <ChevronDownIcon onClick={() => setOpen(!open)} className="h-9 w-9 text-white pl-2 hover:text-black" />
       </div>
       { open && (
         <div className="flex flex-row w-full justify-between">
           <div className="flex flex-row w-1/3 justify-center">
-            <BackwardIcon onClick={() => handleMusic("prev")} className="h-9 w-6 text-white" />
+            <BackwardIcon onClick={() => handleMusic("prev")} className="h-9 w-6 text-white hover:text-red-900" />
             { !play ? (
-              <PlayCircleIcon onClick={() => handleMusic("play")} className="h-9 w-9 text-white" />
+              <PlayCircleIcon onClick={() => handleMusic("play")} className="h-9 w-9 text-white hover:text-blue-900" />
             ) : (
-              <PauseCircleIcon onClick={() => handleMusic("pause")} className="h-9 w-9 text-white" />
+              <PauseCircleIcon onClick={() => handleMusic("pause")} className="h-9 w-9 text-white hover:text-blue-900" />
             )}
-            <ForwardIcon onClick={() => handleMusic("next")} className="h-9 w-6 text-white" />
+            <ForwardIcon onClick={() => handleMusic("next")} className="h-9 w-6 text-white hover:text-green-900" />
           </div>
           <div className="w-2/3 justify-center">
             <MusicSlider volume={volume} handleVolumeChange={handleVolumeChange} />

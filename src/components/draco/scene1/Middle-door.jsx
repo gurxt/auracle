@@ -7,8 +7,8 @@ import React, { useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { Color, MathUtils, Vector3 } from 'three'
-import { useDispatch } from 'react-redux'
-import { setCurrentScene } from '../../../slices/scene'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectSceneHistory, setCurrentScene, setSceneHistory } from '../../../slices/scene'
 
 const vec = new Vector3()
 const red = new Color('yellow')
@@ -20,6 +20,7 @@ export function MiddleDoor(props) {
   const [hovered, setHovered] = useState(false)
   const [selected, setSelected] = useState(false)
   const dispatch = useDispatch()
+  const history = useSelector(selectSceneHistory)
 
   useFrame(({ camera }) => {
     ref.current.position.z = hovered
@@ -32,17 +33,23 @@ export function MiddleDoor(props) {
     if (selected) {
       vec.set(0, 0, -9.44)
       camera.position.lerp(vec, 0.015)
-      setTimeout(() => {
-        dispatch(setCurrentScene(2))
-      }, 1300)
     }
   })
+
+
+  const handleClick = () => {
+    setTimeout(() => {
+      dispatch(setCurrentScene(2))
+      if (!history.some(scene => scene.sceneNumber === 2))
+        dispatch(setSceneHistory([...history, { name: 'Scene2', sceneNumber: 2 }]))
+    }, 1500)
+  }
 
   return (
     <group {...props} dispose={null}>
       <mesh 
         ref={ref}
-        onPointerDown={() => setSelected(true)}
+        onClick={() => { setSelected(true) ; handleClick()}}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)} 
         geometry={nodes.StoneGateway003.geometry} material={materials['monastery_stone_floor.003']} position={[-0.02, 2.529, -8.927]} rotation={[-Math.PI / 2, 0, 0.033]} scale={-1} />

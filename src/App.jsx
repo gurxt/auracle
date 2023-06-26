@@ -7,9 +7,14 @@ import Scene2 from './components/Scene2'
 import { useSelector } from 'react-redux'
 import { selectCurrentScene } from './slices/scene'
 import Controls from './components/controls/Controls'
+import { useEffect } from 'react'
 
 const App = () => {
   const currScene = useSelector(selectCurrentScene)
+
+  useEffect(() => {
+    console.log(currScene)
+  }, [currScene])
 
   return (
     <main className="app">
