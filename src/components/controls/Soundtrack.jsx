@@ -20,7 +20,7 @@ const songs = [
   },
   {
     name: "Autunmnal Glow",
-    song: new Audio('./src/assets/audio/bg_music/bg_03.mp3'),
+    song: new Audio('./src/assets/audio/bg_music/bg_03.wav'),
   },
 ]
 
