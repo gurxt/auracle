@@ -16,11 +16,13 @@ const ScenePlayer = () => {
   const sceneHistory = useSelector(selectSceneHistory)
 
   const handlePreviousScene = () => {
-    dispatch(setCurrentScene(currScene - 1))
+    if (currScene !== 1)
+      dispatch(setCurrentScene(currScene - 1))
   }
 
   const handleNextScene = () => {
-    dispatch(setCurrentScene(currScene + 1))
+    if (currScene !== sceneHistory.length)
+      dispatch(setCurrentScene(currScene + 1))
   }
 
   return (
