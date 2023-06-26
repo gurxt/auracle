@@ -12,15 +12,15 @@ import MusicSlider from "./MusicSlider"
 const songs = [
   {
     name: "The Magic Tree",
-    song: new Audio('./src/assets/audio/bg_music/bg_01.wav'),
+    song: new Audio('./src/assets/audio/bg_music/bg_01.mp3'),
   },
   {
     name: "Fateless",
-    song: new Audio('./src/assets/audio/bg_music/bg_02.wav'),
+    song: new Audio('./src/assets/audio/bg_music/bg_02.mp3'),
   },
   {
     name: "Autunmnal Glow",
-    song: new Audio('./src/assets/audio/bg_music/bg_03.wav'),
+    song: new Audio('./src/assets/audio/bg_music/bg_03.mp3'),
   },
 ]
 
