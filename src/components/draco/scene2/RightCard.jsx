@@ -5,7 +5,7 @@ import * as THREE from 'three'
 
 const vec = new Vector3()
 
-export function RightCard(props) {
+export function RightCard({ url }) {
   const [selected, setSelected] = useState(false)
   const ref = useRef() 
   const {x , y, z, rotation } = { 
@@ -23,16 +23,16 @@ export function RightCard(props) {
       : MathUtils.lerp(ref.current.rotation.y, rotation, 0.025)
   })
 
-  const fool_card = useLoader(TextureLoader, '../src/assets/tarots/0_TheFool.jpg')
+  const random = useLoader(TextureLoader, `../src/assets/tarots/${url}`)
   const back_card = useLoader(TextureLoader, '../src/assets/tarots/back.jpg')
-  const fool = new THREE.MeshBasicMaterial({ map: fool_card })
+  const card = new THREE.MeshBasicMaterial({ map: random })
   const back = new THREE.MeshBasicMaterial({ map: back_card })
   const black = new THREE.MeshBasicMaterial({ color: 'black' })
-
+  
   return (
     <mesh 
       ref={ref} 
-      material={[ black, black, black, black, back, fool, black, black ]}
+      material={[ black, black, black, black, back, card, black, black ]}
       name="meshBasicMaterial"
       rotation={[0, rotation, 0]} 
       position={[x, y, z]}

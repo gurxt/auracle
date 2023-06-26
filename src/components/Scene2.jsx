@@ -8,11 +8,13 @@ import { Background } from "./draco/scene1/Background"
 import { Environment } from "@react-three/drei"
 import { MiddleCard } from "./draco/scene2/MiddleCard"
 import { RightCard } from "./draco/scene2/RightCard"
+import cards from "./draco/scene2/Cards"
 
 const vec = new Vector3()
 
 const Scene2 = () => {
   const [show, setShow] = useState(false)
+  const [tarots, setTarots] = useState([])
   const { x, y, z, intensity} = useControls({
     x: { value: 13.6, min: -20, max: 20, step: 0.1 },
     y: { value: 12.5, min: -20, max: 20, step: 0.1 },
@@ -23,9 +25,22 @@ const Scene2 = () => {
   const { camera } = useThree()
 
   useEffect(() => {
+    console.log(cards)
     if (camera) {
-      camera.position.set(0, 5, -4) // Set the desired camera position
+      camera.position.set(0, 5, -3) // Set the desired camera position
     }
+    // set random tarots. no duplicates.
+    const selected = []
+    while (selected.length !== 3) {
+      const random = Math.floor(Math.random() * cards.length)
+      if (!selected.includes(random))
+        selected.push(random)
+    }
+    setTarots([
+      cards[selected[0]],
+      cards[selected[1]],
+      cards[selected[2]]
+    ])
   }, [])
 
   useFrame(({ mouse}) => {
@@ -47,9 +62,9 @@ const Scene2 = () => {
     <Themis show={show} handleShow={handleShow} />
     { show && (
       <>
-      <LeftCard />
-      <MiddleCard />
-      <RightCard />
+      <LeftCard url={tarots[0]} />
+      <MiddleCard url={tarots[1]} />
+      <RightCard url={tarots[2]} />
       </>
     )}
     <Background />

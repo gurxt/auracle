@@ -17,7 +17,7 @@ export function Themis(props) {
   useFrame(({ camera }) => {
     ref.current.position.y = selected 
       ? MathUtils.lerp(ref.current.position.y, camera.position.y - 8, 0.015)
-      : MathUtils.lerp(ref.current.position.y, -0.5, 0.025)
+      : MathUtils.lerp(ref.current.position.y, -1.30, 0.025)
 
     if (selected)
       props.handleShow()
@@ -25,6 +25,7 @@ export function Themis(props) {
 
   useEffect(() => {
     ref.current.rotation.y += Math.PI
+    ref.current.position.y = MathUtils.lerp(ref.current.position.y, -1.30, 0.025)
   }, [])
 
   const { nodes, materials } = useGLTF('/themis-draco-transformed.glb')
@@ -32,7 +33,7 @@ export function Themis(props) {
   return (
     <group 
       onClick={() => setSelected(!selected)}
-      scale={[1.5, 1.5, 1.5]} position={[-0.2, -0.5, 2]} ref={ref} {...props} dispose={null}>
+      scale={[1.5, 1.5, 1.5]} position={[-0.2, -8, 2]} ref={ref} {...props} dispose={null}>
       <mesh geometry={nodes.PEDESTAL.geometry} material={materials['Material.008']} position={[-0.012, 0.305, -0.094]} scale={[0.37, 0.316, 0.37]} />
       <mesh geometry={nodes.Chains.geometry} material={materials['Material.007']} position={[0.013, 2.461, 0.054]} rotation={[-0.391, 0.053, 0.008]} scale={0.017} />
       <mesh geometry={nodes.Themis_Sculpture.geometry} material={materials['Material.006']} />
