@@ -37,7 +37,7 @@ export function LeftDoor(props) {
     setTimeout(() => {
       dispatch(setCurrentScene(2))
       if (!history.some(scene => scene.sceneNumber === 2))
-        dispatch(setSceneHistory([...history, { name: 'Scene2', sceneNumber: 2 }]))
+        dispatch(setSceneHistory([...history, { name: 'The Auracle', sceneNumber: 2 }]))
     }, 1500)
   }
 

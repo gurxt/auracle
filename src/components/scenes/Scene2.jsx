@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react"
-import { Themis } from "./draco/scene2/Themis"
+import { Themis } from "../draco/scene2/Themis"
 import { useControls } from "leva"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Vector3 } from "three"
-import { LeftCard } from "./draco/scene2/LeftCard"
-import { Background } from "./draco/scene1/Background"
+import { LeftCard } from "../draco/scene2/LeftCard"
+import { Background } from "../draco/scene1/Background"
 import { Environment } from "@react-three/drei"
-import { MiddleCard } from "./draco/scene2/MiddleCard"
-import { RightCard } from "./draco/scene2/RightCard"
-import cards from "./draco/scene2/Cards"
+import { MiddleCard } from "../draco/scene2/MiddleCard"
+import { RightCard } from "../draco/scene2/RightCard"
+import cards from "../draco/scene2/Cards"
 import { Perf } from "r3f-perf"
-import { CrystalBall } from "./draco/scene2/CrystalBall"
+import { CrystalBall } from "../draco/scene2/CrystalBall"
 
 const vec = new Vector3()
 
@@ -23,12 +23,12 @@ const Scene2 = () => {
     2: false
   })
 
-  const { x, y, z, intensity} = useControls({
-    x: { value: 13.6, min: -20, max: 20, step: 0.1 },
-    y: { value: 12.5, min: -20, max: 20, step: 0.1 },
-    z: { value: -17.5, min: -20, max: 20, step: 0.1 },
-    intensity: { value: 1, min: 0, max: 3, step: 0.1 },
-  })
+  // const { x, y, z, intensity} = useControls({
+  //   x: { value: 13.6, min: -20, max: 20, step: 0.1 },
+  //   y: { value: 12.5, min: -20, max: 20, step: 0.1 },
+  //   z: { value: -17.5, min: -20, max: 20, step: 0.1 },
+  //   intensity: { value: 1, min: 0, max: 3, step: 0.1 },
+  // })
 
   const { camera } = useThree()
 
@@ -82,7 +82,7 @@ const Scene2 = () => {
       <CrystalBall />
     )}
     <Background />
-    <directionalLight intensity={intensity} position={[x, y, z]}>
+    <directionalLight position={[13.6, 12.6, -17.5]} intensity={1}>
       <mesh><sphereGeometry args={[1]} /></mesh>
     </directionalLight>
     </>

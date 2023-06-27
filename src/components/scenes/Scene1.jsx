@@ -1,24 +1,23 @@
 import { Environment, Stats } from "@react-three/drei"
 import { useControls } from "leva"
-import { Background } from "./draco/scene1/Background"
-import { LeftDoor } from "./draco/scene1/Left-door"
-import { RightDoor } from "./draco/scene1/Right-door"
-import { MiddleDoor } from "./draco/scene1/Middle-door"
+import { Background } from "../draco/scene1/Background"
+import { LeftDoor } from "../draco/scene1/Left-door"
+import { RightDoor } from "../draco/scene1/Right-door"
+import { MiddleDoor } from "../draco/scene1/Middle-door"
 import { Vector3 } from "three"
 import { useFrame, useThree } from "@react-three/fiber"
 import {  useEffect } from "react"
-import { Perf } from "r3f-perf"
 
 const vec = new Vector3()
 
 const Scene1 = ({ adjust }) => {
-  const { x, y, z, intensity } = useControls('Light', {
-    x: { value: -25, min: -30, max: 30, step: 0.1 },
-    y: { value: 1.6, min: -30, max: 30, step: 0.1 },
-    z: { value: 13.1, min: -30, max: 30, step: 0.1 },
-    intensity: { value: 1.45, min: -10, max: 10, step: 0.1 },
-    castShadow: true
-  })
+  // const { x, y, z, intensity } = useControls('Light', {
+  //   x: { value: -25, min: -30, max: 30, step: 0.1 },
+  //   y: { value: 1.6, min: -30, max: 30, step: 0.1 },
+  //   z: { value: 13.1, min: -30, max: 30, step: 0.1 },
+  //   intensity: { value: 1.45, min: -10, max: 10, step: 0.1 },
+  //   castShadow: true
+  // })
 
   const { camera } = useThree()
 
@@ -45,8 +44,8 @@ const Scene1 = ({ adjust }) => {
       <RightDoor />
       <Background />
       <directionalLight
-        position={[x, y, z]}
-        intensity={intensity}
+        position={[-25, 1.6, 13.1]}
+        intensity={1.45}
         castShadow={true}
       >
       </directionalLight>
