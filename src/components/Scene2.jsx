@@ -9,6 +9,8 @@ import { Environment } from "@react-three/drei"
 import { MiddleCard } from "./draco/scene2/MiddleCard"
 import { RightCard } from "./draco/scene2/RightCard"
 import cards from "./draco/scene2/Cards"
+import { Perf } from "r3f-perf"
+import { CrystalBall } from "./draco/scene2/CrystalBall"
 
 const vec = new Vector3()
 
@@ -65,21 +67,19 @@ const Scene2 = () => {
   return (
     <> 
     <Environment
-      files="./sky.exr"
+      files="sky.hdr"
       background
     />
     <Themis show={show} handleShow={handleShow} />
-    { cardClicked[0] && cardClicked[1] && cardClicked[2] && (
-      <mesh>
-        <boxGeometry args={[2, 2]} />
-      </mesh>
-    )}
     { show && (
       <>
       <LeftCard cardClicked={cardClicked} handleCardClicked={handleCardClicked} url={tarots[0]} />
       <MiddleCard cardClicked={cardClicked} handleCardClicked={handleCardClicked} url={tarots[1]} />
       <RightCard cardClicked={cardClicked} handleCardClicked={handleCardClicked} url={tarots[2]} />
       </>
+    )}
+    { cardClicked[0] && cardClicked[1] && cardClicked[2] && (
+      <CrystalBall />
     )}
     <Background />
     <directionalLight intensity={intensity} position={[x, y, z]}>

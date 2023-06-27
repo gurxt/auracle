@@ -1,4 +1,4 @@
-import { Environment } from "@react-three/drei"
+import { Environment, Stats } from "@react-three/drei"
 import { useControls } from "leva"
 import { Background } from "./draco/scene1/Background"
 import { LeftDoor } from "./draco/scene1/Left-door"
@@ -6,7 +6,8 @@ import { RightDoor } from "./draco/scene1/Right-door"
 import { MiddleDoor } from "./draco/scene1/Middle-door"
 import { Vector3 } from "three"
 import { useFrame, useThree } from "@react-three/fiber"
-import { Suspense, useEffect, useRef } from "react"
+import {  useEffect } from "react"
+import { Perf } from "r3f-perf"
 
 const vec = new Vector3()
 
@@ -36,7 +37,7 @@ const Scene1 = ({ adjust }) => {
   return (
       <>
       <Environment
-        files="./sky.exr"
+        files="/sky.hdr"
         background
       />
       <LeftDoor />
@@ -44,10 +45,12 @@ const Scene1 = ({ adjust }) => {
       <RightDoor />
       <Background />
       <directionalLight
-        castShadow={true}
         position={[x, y, z]}
         intensity={intensity}
-      />
+        castShadow={true}
+      >
+      </directionalLight>
+      <ambientLight intensity={0.25}/>
       </>
   )
 }
