@@ -38,7 +38,13 @@ body {
   @apply
   2xl:left-1/4 2xl:right-1/4
   xl:right-1/4 xl:left-0
-  md:mx-5
+  md:mx-2
   flex flex-row bg-black bg-opacity-50 text-white rounded-xl
-  fixed z-50 bottom-0 mb-2 right-0 left-0 mx-1
+  fixed z-50 bottom-0 mb-2 right-0 left-0 mx-1 p-2 h-32 max-h-64;
+}
+
+.input {
+  @apply 
+  border border-none px-4 py-2 rounded-lg shadow-sm w-1/2 resize-y
+  focus:outline-none bg-black bg-opacity-50;
 }

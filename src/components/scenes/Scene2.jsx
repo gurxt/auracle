@@ -51,7 +51,7 @@ const Scene2 = () => {
   }, [])
 
   useFrame(({ mouse}) => {
-    vec.set(mouse.x * 1.24, mouse.y * 1 + 3, camera.position.z)
+    vec.set(mouse.x * 1.24, mouse.y * 1.1 + 3, camera.position.z)
     camera.position.lerp(vec, 0.025)
     camera.lookAt(0, 2, 2)
   })
