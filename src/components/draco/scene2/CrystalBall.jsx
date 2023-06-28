@@ -36,9 +36,9 @@ export function CrystalBall(props) {
 
   const handleClick = () => {
     setTimeout(() => {
-      dispatch(setCurrentScene(1))
-      if (!history.some(scene => scene.sceneNumber === 1))
-        dispatch(setSceneHistory([...history, { name: 'Scene2', sceneNumber: 1 }]))
+      dispatch(setCurrentScene(3))
+      if (!history.some(scene => scene.sceneNumber === 3))
+        dispatch(setSceneHistory([...history, { name: 'Temple of Themis', sceneNumber: 3 }]))
     }, 2000)
   }
 

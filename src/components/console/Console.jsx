@@ -2,10 +2,14 @@ import Prompter from "./Prompter"
 import TextInput from "./TextInput"
 import Auracle from "../../assets/auracle.png"
 import { PencilSquareIcon, ChatBubbleBottomCenterIcon } from '@heroicons/react/24/solid'
+import { useEffect } from "react"
 
-const Console = () => {
+const Console = ({ show }) => {
+  useEffect(() => {
+    console.log(show)
+  }, [show])
   return (
-    <div className="console_div">
+    <div className={`console_div opacity-${show ? '10' : '100'}`}>
       <div className="2-1/6">
         <img src={Auracle} className="w-32 h-full rounded-xl" />
       </div>
