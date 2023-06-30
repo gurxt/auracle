@@ -36,7 +36,7 @@ const Scene1 = ({ adjust }) => {
   return (
       <>
       <Environment
-        files="/sky.hdr"
+        files="/sky2.hdr"
         background
       />
       <LeftDoor />
@@ -49,7 +49,6 @@ const Scene1 = ({ adjust }) => {
         castShadow={true}
       >
       </directionalLight>
-      <ambientLight intensity={0.25}/>
       </>
   )
 }

@@ -10,6 +10,7 @@ import Console from './components/console/Console'
 import { useEffect, useState } from 'react'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid'
 import Scene3 from './components/scenes/Scene3'
+import Scene4 from './components/scenes/Scene4'
 
 const App = () => {
   const currScene = useSelector(selectCurrentScene)
@@ -31,7 +32,7 @@ const App = () => {
       </div>
       <Canvas camera={{ position: [0, 0, 2] }} shadows>
         { currScene === 1 && (
-          <Scene1 />
+          <Scene4 />
         )} 
         { currScene === 2 && (
           <Scene2 />

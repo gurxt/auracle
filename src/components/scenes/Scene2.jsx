@@ -67,7 +67,7 @@ const Scene2 = () => {
   return (
     <> 
     <Environment
-      files="sky.hdr"
+      files="sky2.hdr"
       background
     />
     <Themis show={show} handleShow={handleShow} />
