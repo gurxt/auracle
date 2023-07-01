@@ -8,10 +8,13 @@ import { LeftMirror } from "../draco/scene1/LeftMirror"
 import { LeftMiddleMirror } from "../draco/scene1/LeftMiddleMirror"
 import { RightMiddleMirror } from "../draco/scene1/RightMiddleMirror"
 import { RightMirror } from "../draco/scene1/RightMirror"
+import { useDispatch, useSelector } from "react-redux"
+import { selectSceneHistory, setCurrentScene, setSceneHistory } from "../../slices/scene"
 
 const vec = new Vector3()
 
 const Scene1 = ({ adjust }) => {
+  const [transition, setTransition] = useState({ value: false, look: null })
   const { x, y, z, intensity, angle, penumbra } = useControls('Light', {
     x: { value: 0, min: -20, max: 20, step: 0.1 },
     y: { value: 6.7, min: -20, max: 20, step: 0.1 },
@@ -22,23 +25,31 @@ const Scene1 = ({ adjust }) => {
     castShadow: true
   })
 
+  const dispatch = useDispatch()
+  const history = useSelector(selectSceneHistory)
   const { camera } = useThree()
+
+  const handleClick = () => {
+    setTimeout(() => {
+      dispatch(setCurrentScene(2))
+      if (!history.some(scene => scene.sceneNumber === 2))
+        dispatch(setSceneHistory([...history, { name: 'The Auracle', sceneNumber: 2 }]))
+    }, 1500)
+  }
 
   useEffect(() => {
     if (camera) {
-      camera.position.set(5, 0, -1) // Set the desired camera position
+      camera.position.set(2, 4, -1) // Set the desired camera position
     }
   }, [])
 
-  const [isNextScene, setIsNextScene] = useState(false)
 
   useFrame(({ mouse }) => {
     vec.set(mouse.x * 0.75, mouse.y * 1 + 2.5, camera.position.z)
     camera.position.lerp(vec, 0.025)
-    camera.lookAt(0.336, 2.3, 14.145)
-    if (!isNextScene) {
-      camera.lookAt(0, 2, 2)
-    }
+    camera.lookAt(0, 2, 2)
+    if (transition.value)
+      camera.lookAt(transition.look.x, 2, transition.look.z)
   })
 
   return (
@@ -49,10 +60,10 @@ const Scene1 = ({ adjust }) => {
       />
       <Stars />
       <Dome />
-      <LeftMirror />
-      <LeftMiddleMirror />
-      <RightMiddleMirror />
-      <RightMirror />
+      <LeftMirror        camera={camera} setTransition={setTransition} handleClick={handleClick} />
+      <LeftMiddleMirror  camera={camera} setTransition={setTransition} handleClick={handleClick} />
+      <RightMiddleMirror camera={camera} setTransition={setTransition} handleClick={handleClick} />
+      <RightMirror       camera={camera} setTransition={setTransition} handleClick={handleClick} />
       <spotLight
         position={[x, y, z]}
         intensity={intensity}
