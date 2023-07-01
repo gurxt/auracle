@@ -5,9 +5,6 @@ import { PencilSquareIcon, ChatBubbleBottomCenterIcon } from '@heroicons/react/2
 import { useEffect } from "react"
 
 const Console = ({ show }) => {
-  useEffect(() => {
-    console.log(show)
-  }, [show])
   return (
     <div className={`console_div opacity-${show ? '10' : '100'}`}>
       <div className="2-1/6">

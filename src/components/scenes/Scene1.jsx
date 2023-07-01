@@ -1,55 +1,70 @@
-import { Environment, Stats } from "@react-three/drei"
-import { useControls } from "leva"
-import { Background } from "../draco/scene1/Background"
-import { LeftDoor } from "../draco/scene1/Left-door"
-import { RightDoor } from "../draco/scene1/Right-door"
-import { MiddleDoor } from "../draco/scene1/Middle-door"
-import { Vector3 } from "three"
+import { Environment, OrbitControls, Shadow, Stars } from "@react-three/drei"
+import { Fog, Vector3 } from "three"
 import { useFrame, useThree } from "@react-three/fiber"
-import {  useEffect } from "react"
+import {  useEffect, useState } from "react"
+import { Dome } from "../draco/scene1/Dome"
+import { useControls } from "leva"
+import { LeftMirror } from "../draco/scene1/LeftMirror"
+import { LeftMiddleMirror } from "../draco/scene1/LeftMiddleMirror"
+import { RightMiddleMirror } from "../draco/scene1/RightMiddleMirror"
+import { RightMirror } from "../draco/scene1/RightMirror"
 
 const vec = new Vector3()
 
 const Scene1 = ({ adjust }) => {
-  // const { x, y, z, intensity } = useControls('Light', {
-  //   x: { value: -25, min: -30, max: 30, step: 0.1 },
-  //   y: { value: 1.6, min: -30, max: 30, step: 0.1 },
-  //   z: { value: 13.1, min: -30, max: 30, step: 0.1 },
-  //   intensity: { value: 1.45, min: -10, max: 10, step: 0.1 },
-  //   castShadow: true
-  // })
+  const { x, y, z, intensity, angle, penumbra } = useControls('Light', {
+    x: { value: 0, min: -20, max: 20, step: 0.1 },
+    y: { value: 6.7, min: -20, max: 20, step: 0.1 },
+    z: { value: 8.5, min: -20, max: 20, step: 0.1 },
+    intensity: { value: 0.5, min: -10, max: 10, step: 0.1 },
+    angle: { value: -1.1, min: -10, max: 10, step: 0.1 },
+    penumbra: { value: 0.2, min: -10, max: 10, step: 0.1 },
+    castShadow: true
+  })
 
   const { camera } = useThree()
 
   useEffect(() => {
     if (camera) {
-      camera.position.set(4, 1, 2) // Set the desired camera position
+      camera.position.set(5, 0, -1) // Set the desired camera position
     }
   }, [])
 
+  const [isNextScene, setIsNextScene] = useState(false)
+
   useFrame(({ mouse }) => {
-    vec.set(-mouse.x * 1.24, -mouse.y * 1 + 3, camera.position.z)
+    vec.set(mouse.x * 0.75, mouse.y * 1 + 2.5, camera.position.z)
     camera.position.lerp(vec, 0.025)
-    camera.lookAt(0, 2, -3)
+    camera.lookAt(0.336, 2.3, 14.145)
+    if (!isNextScene) {
+      camera.lookAt(0, 2, 2)
+    }
   })
 
   return (
       <>
       <Environment
-        files="/sky2.hdr"
+        files="sky.hdr"
         background
       />
-      <LeftDoor />
-      <MiddleDoor />
-      <RightDoor />
-      <Background />
-      <directionalLight
-        position={[-25, 1.6, 13.1]}
-        intensity={1.45}
-        castShadow={true}
+      <Stars />
+      <Dome />
+      <LeftMirror />
+      <LeftMiddleMirror />
+      <RightMiddleMirror />
+      <RightMirror />
+      <spotLight
+        position={[x, y, z]}
+        intensity={intensity}
+        penumbra={penumbra}
+        angle={angle}
       >
-      </directionalLight>
-      </>
+        <mesh>
+          <sphereGeometry />
+        </mesh>
+      </spotLight>
+      <ambientLight intensity={0.2} />
+    </>
   )
 }
 

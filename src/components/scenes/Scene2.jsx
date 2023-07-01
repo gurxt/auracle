@@ -1,15 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 import { Themis } from "../draco/scene2/Themis"
-import { useControls } from "leva"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Vector3 } from "three"
 import { LeftCard } from "../draco/scene2/LeftCard"
-import { Background } from "../draco/scene1/Background"
 import { Environment } from "@react-three/drei"
 import { MiddleCard } from "../draco/scene2/MiddleCard"
 import { RightCard } from "../draco/scene2/RightCard"
 import cards from "../draco/scene2/Cards"
-import { Perf } from "r3f-perf"
 import { CrystalBall } from "../draco/scene2/CrystalBall"
 
 const vec = new Vector3()
@@ -81,7 +78,6 @@ const Scene2 = () => {
     { cardClicked[0] && cardClicked[1] && cardClicked[2] && (
       <CrystalBall />
     )}
-    <Background />
     <directionalLight position={[13.6, 12.6, -17.5]} intensity={1}>
       <mesh><sphereGeometry args={[1]} /></mesh>
     </directionalLight>

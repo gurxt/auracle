@@ -1,24 +1,19 @@
 import './App.css'
 import { Canvas } from '@react-three/fiber'
 import { Loader } from '@react-three/drei'
-import Scene1 from './components/scenes/Scene1'
-import Scene2 from './components/scenes/Scene2'
 import { useSelector } from 'react-redux'
 import { selectCurrentScene } from './slices/scene'
 import Controls from './components/controls/Controls'
 import Console from './components/console/Console'
 import { useEffect, useState } from 'react'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid'
+import Scene1 from './components/scenes/Scene1'
+import Scene2 from './components/scenes/Scene2'
 import Scene3 from './components/scenes/Scene3'
-import Scene4 from './components/scenes/Scene4'
 
 const App = () => {
   const currScene = useSelector(selectCurrentScene)
   const [show, setShow] = useState(true)
-
-  useEffect(() => {
-    console.log(show)
-  }, [show])
 
   return (
     <main className="app">
@@ -32,7 +27,7 @@ const App = () => {
       </div>
       <Canvas camera={{ position: [0, 0, 2] }} shadows>
         { currScene === 1 && (
-          <Scene4 />
+          <Scene1 />
         )} 
         { currScene === 2 && (
           <Scene2 />
