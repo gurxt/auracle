@@ -1,13 +1,9 @@
 import { Environment, OrbitControls, Shadow, Stars } from "@react-three/drei"
-import { GreekTemple } from "../draco/scene3/GreekTemple"
 import { Fog, Vector3 } from "three"
 import { useFrame, useThree } from "@react-three/fiber"
 import {  useEffect, useState } from "react"
 import { Dome } from "../draco/scene4/Dome"
 import { useControls } from "leva"
-import { MiddleDoor } from "../draco/scene4/MiddleDoor"
-import { RightDoor } from "../draco/scene4/RightDoor"
-import { LeftDoor } from "../draco/scene4/LeftDoor"
 
 const vec = new Vector3()
 
@@ -24,7 +20,7 @@ const Scene4 = ({ adjust }) => {
 
   useEffect(() => {
     if (camera) {
-      camera.position.set(0, 0.5, -1) // Set the desired camera position
+      camera.position.set(0, 2, -2) // Set the desired camera position
     }
   }, [])
 
@@ -47,7 +43,7 @@ const Scene4 = ({ adjust }) => {
       />
       <Stars />
       <Dome />
-      <ambientLight intensity={1} />
+      <ambientLight intensity={0.45} />
     </>
   )
 }

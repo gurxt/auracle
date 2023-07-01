@@ -8,13 +8,15 @@ import { useGLTF } from '@react-three/drei'
 
 export function Dome(props) {
   const { nodes, materials } = useGLTF('/dome-draco-transformed.glb')
-  console.log(materials)
   return (
- <group {...props} dispose={null}>
-      <mesh geometry={nodes.Cylinder001.geometry} material={materials['Black and gold marble']} position={[0, -0.122, 0]} scale={[9.939, 0.099, 9.939]} />
-      <mesh geometry={nodes.Cylinder.geometry} material={materials['Green marble']} position={[0.002, 6.12, 5.487]} scale={[6, 1.2, 6]} />
-      <mesh geometry={nodes.Floor.geometry} material={materials['Artificial Marble 1']} position={[0, -0.522, 5.444]} scale={[7.121, 0.408, 7.121]} />
-      <mesh geometry={nodes.Roof.geometry} material={materials['Black and gold marble']} position={[0.088, 6.564, 5.32]} scale={5} />
+     <group {...props} dispose={null}>
+      <mesh geometry={nodes.Cylinder003.geometry} material={materials['Black and gold marble']} position={[-0.089, -0.138, -0.208]} scale={[10.372, 0.103, 10.372]} />
+      <mesh geometry={nodes.Cylinder.geometry} material={materials['Green marble.002']} position={[0.002, 6.203, 5.487]} scale={[6, 1.2, 6]} />
+      <group position={[-0.089, -0.542, 5.473]} scale={[7.431, 0.425, 7.431]}>
+        <mesh geometry={nodes.Cylinder004.geometry} material={materials['Artificial Marble 1']} />
+        <mesh geometry={nodes.Cylinder004_1.geometry} material={materials.PaletteMaterial001} />
+      </group>
+      <mesh geometry={nodes.Roof.geometry} material={materials.PaletteMaterial002} position={[0.088, 6.636, 5.32]} scale={5} />
     </group>
   )
 }
