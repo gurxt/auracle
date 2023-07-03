@@ -5,11 +5,30 @@ Command: npx gltfjsx@6.2.5 .\public\dome-draco.glb --transform scale: [0.75, 0.7
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import { useEffect } from 'react'
+import { useFrame } from '@react-three/fiber'
+import { MathUtils } from 'three'
 
-export function Dome(props) {
+export function Dome({ transition }) {
   const { nodes, materials } = useGLTF('/dome-draco-transformed.glb')
+  const ref = useRef()
+
+  useFrame(() => {
+    ref.current.children[0].material.opacity = MathUtils.lerp(1, 0, 0.025)
+    ref.current.children[1].material.opacity = MathUtils.lerp(1, 0, 0.025)
+    ref.current.children[2].children[0].material.opacity = MathUtils.lerp(1, 0, 0.025)
+    ref.current.children[2].children[1].material.opacity = MathUtils.lerp(1, 0, 0.025)
+  })
+
+  useEffect(() => {
+    ref.current.children[0].material.transparent = true
+    ref.current.children[1].material.transparent = true
+    ref.current.children[2].children[0].material.transparent = true
+    ref.current.children[2].children[1].material.transparent = true
+  }, [])
+
   return (
-    <group {...props} dispose={null}>
+    <group ref={ref} dispose={null}>
       <mesh geometry={nodes.Railing.geometry} material={materials['Black and gold marble']} position={[-0.089, -0.138, -0.208]} scale={[10.372, 0.103, 10.372]} />
       <mesh geometry={nodes.Cylinder.geometry} material={materials['Green marble.002']} position={[0.002, 6.203, 5.487]} scale={[8.5, 1.2, 8.5]} />
       <group position={[-0.089, -0.542, 5.473]} scale={[7.431, 0.425, 7.431]}>

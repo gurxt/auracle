@@ -3,11 +3,14 @@ import { Themis } from "../draco/scene2/Themis"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Vector3 } from "three"
 import { LeftCard } from "../draco/scene2/LeftCard"
-import { Environment } from "@react-three/drei"
+import { Environment, Stars } from "@react-three/drei"
 import { MiddleCard } from "../draco/scene2/MiddleCard"
 import { RightCard } from "../draco/scene2/RightCard"
 import cards from "../draco/scene2/Cards"
 import { CrystalBall } from "../draco/scene2/CrystalBall"
+import { Platform } from "../draco/scene2/Platform"
+import { Earth } from "../draco/scene2/Earth"
+import { Moon } from "../draco/scene2/Moon"
 
 const vec = new Vector3()
 
@@ -19,13 +22,6 @@ const Scene2 = () => {
     1: false,
     2: false
   })
-
-  // const { x, y, z, intensity} = useControls({
-  //   x: { value: 13.6, min: -20, max: 20, step: 0.1 },
-  //   y: { value: 12.5, min: -20, max: 20, step: 0.1 },
-  //   z: { value: -17.5, min: -20, max: 20, step: 0.1 },
-  //   intensity: { value: 1, min: 0, max: 3, step: 0.1 },
-  // })
 
   const { camera } = useThree()
 
@@ -62,11 +58,14 @@ const Scene2 = () => {
   }
 
   return (
-    <> 
+    <>
     <Environment
-      files="sky2.hdr"
-      background
+      background={true}
+      files="sky.hdr"
     />
+    <Stars />
+    <Earth />
+    <Moon />
     <Themis show={show} handleShow={handleShow} />
     { show && (
       <>

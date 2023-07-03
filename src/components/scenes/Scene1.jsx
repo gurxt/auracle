@@ -54,12 +54,9 @@ const Scene1 = ({ adjust }) => {
 
   return (
       <>
-      <Environment
-        files="sky.hdr"
-        background
-      />
+      <Environment files="sky.hdr" background />
       <Stars />
-      <Dome />
+      <Dome transition={transition.value} />
       <LeftMirror        camera={camera} setTransition={setTransition} handleClick={handleClick} />
       <LeftMiddleMirror  camera={camera} setTransition={setTransition} handleClick={handleClick} />
       <RightMiddleMirror camera={camera} setTransition={setTransition} handleClick={handleClick} />
@@ -70,9 +67,7 @@ const Scene1 = ({ adjust }) => {
         penumbra={penumbra}
         angle={angle}
       >
-        <mesh>
-          <sphereGeometry />
-        </mesh>
+        <mesh><sphereGeometry /></mesh>
       </spotLight>
       <ambientLight intensity={0.2} />
     </>

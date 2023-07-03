@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { selectCurrentScene } from './slices/scene'
 import Controls from './components/controls/Controls'
 import Console from './components/console/Console'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid'
 import Scene1 from './components/scenes/Scene1'
 import Scene2 from './components/scenes/Scene2'
@@ -25,18 +25,16 @@ const App = () => {
         <Controls show={show} />
         <Console show={show} />
       </div>
-      <Canvas camera={{ position: [0, 0, 2] }} shadows>
-        { currScene === 1 && (
-          <Scene1 />
-        )} 
-        { currScene === 2 && (
-          <Scene2 />
-        )} 
-        { currScene === 3 && (
-          <Scene3 />
-        )}
-      </Canvas>
-      <Loader />
+      <>
+        <Canvas dpr={window.devicePixelRatio} camera={{ position: [0, 0, 2] }} shadows>
+          <group transparent={true} opacity={0.5}>
+            { currScene === 1 && <Scene1 /> }
+            { currScene === 2 && <Scene2 /> }
+            { currScene === 3 && <Scene3 /> }
+          </group>
+        </Canvas>
+        <Loader />
+      </>
     </main>
   )
 }
