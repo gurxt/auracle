@@ -51,7 +51,7 @@ export function CrystalBall(props) {
       onPointerOut={() => setHovered(false)}
     >
 
-      <mesh ref={ref} geometry={nodes.Icosphere.geometry} material={materials.chrome} position={[-0.12, -2, 2]} scale={0.5} />
+      <mesh ref={ref} geometry={nodes.Icosphere.geometry} material={materials.chrome} position={[-0.12, -2, 2.5]} scale={0.5} />
     </group>
   )
 }

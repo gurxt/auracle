@@ -11,7 +11,7 @@ export function MiddleCard({ cardClicked, handleCardClicked, url }) {
   const {x , y, z, rotation } = { 
     x: -0.2,
     y: -2.5,
-    z: 5,
+    z: 4,
     rotation: Math.PI
   }
 
@@ -39,7 +39,7 @@ export function MiddleCard({ cardClicked, handleCardClicked, url }) {
       position={[x, y, z]}
       onClick={() => { setSelected(!selected); if (!cardClicked[1]) handleCardClicked(1) }}
     >
-      <boxGeometry args={[3, 4.5, 0.05]} />
+      <boxGeometry args={[2.8, 4, 0.05]} />
     </mesh>
   )
 }

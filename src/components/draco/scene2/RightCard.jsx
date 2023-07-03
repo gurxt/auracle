@@ -9,17 +9,17 @@ export function RightCard({ cardClicked, handleCardClicked, url }) {
   const [selected, setSelected] = useState(false)
   const ref = useRef() 
   const {x , y, z, rotation } = { 
-    x: -6,
+    x: -2.9,
     y: -2.5,
-    z: 3.5,
-    rotation: Math.PI / 1.4
+    z: 2.5,
+    rotation: Math.PI
   }
 
   useFrame(() => {
-    ref.current.position.y = MathUtils.lerp(ref.current.position.y, 2.75, 0.025)
+    ref.current.position.y = MathUtils.lerp(ref.current.position.y, 2.85, 0.025)
 
     ref.current.rotation.y = selected
-      ? MathUtils.lerp(ref.current.rotation.y, -0.8, 0.025)
+      ? MathUtils.lerp(ref.current.rotation.y, 0, 0.025)
       : MathUtils.lerp(ref.current.rotation.y, rotation, 0.025)
   })
 
@@ -38,7 +38,7 @@ export function RightCard({ cardClicked, handleCardClicked, url }) {
       position={[x, y, z]}
       onClick={() => { setSelected(!selected) ;  if (!cardClicked[2]) handleCardClicked(2) }}
     >
-      <boxGeometry args={[2.5, 4.5, 0.05]} />
+      <boxGeometry args={[2.5, 3.9, 0.05]} />
     </mesh>
   )
 }

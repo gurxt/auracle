@@ -54,8 +54,6 @@ const Scene1 = ({ adjust }) => {
 
   return (
       <>
-      <Environment files="sky.hdr" background />
-      <Stars />
       <Dome transition={transition.value} />
       <LeftMirror        camera={camera} setTransition={setTransition} handleClick={handleClick} />
       <LeftMiddleMirror  camera={camera} setTransition={setTransition} handleClick={handleClick} />

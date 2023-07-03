@@ -3,14 +3,12 @@ import { Themis } from "../draco/scene2/Themis"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Vector3 } from "three"
 import { LeftCard } from "../draco/scene2/LeftCard"
-import { Environment, Stars } from "@react-three/drei"
 import { MiddleCard } from "../draco/scene2/MiddleCard"
 import { RightCard } from "../draco/scene2/RightCard"
 import cards from "../draco/scene2/Cards"
 import { CrystalBall } from "../draco/scene2/CrystalBall"
-import { Platform } from "../draco/scene2/Platform"
-import { Earth } from "../draco/scene2/Earth"
-import { Moon } from "../draco/scene2/Moon"
+import { Asteroid } from "../draco/scene2/Asterioid"
+import { AsteroidBits } from "../draco/scene2/AsteroidBits"
 
 const vec = new Vector3()
 
@@ -24,6 +22,8 @@ const Scene2 = () => {
   })
 
   const { camera } = useThree()
+  const handleShow = () => setShow(true)
+  const handleCardClicked = idx => setCardClicked(prev => ({...prev, [idx]: true }))
 
   useEffect(() => {
     if (camera) {
@@ -48,25 +48,12 @@ const Scene2 = () => {
     camera.position.lerp(vec, 0.025)
     camera.lookAt(0, 2, 2)
   })
-  
-  const handleShow = () => {
-    setShow(true)
-  }
-
-  const handleCardClicked = idx => {
-    setCardClicked(prev => ({...prev, [idx]: true })) 
-  }
 
   return (
     <>
-    <Environment
-      background={true}
-      files="sky.hdr"
-    />
-    <Stars />
-    <Earth />
-    <Moon />
     <Themis show={show} handleShow={handleShow} />
+    <Asteroid />
+    <AsteroidBits />
     { show && (
       <>
       <LeftCard cardClicked={cardClicked} handleCardClicked={handleCardClicked} url={tarots[0]} />
