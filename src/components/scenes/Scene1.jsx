@@ -13,7 +13,7 @@ import { selectSceneHistory, setCurrentScene, setSceneHistory } from "../../slic
 
 const vec = new Vector3()
 
-const Scene1 = ({ adjust }) => {
+const Scene1 = () => {
   const [transition, setTransition] = useState({ value: false, look: null })
   const { x, y, z, intensity, angle, penumbra } = useControls('Light', {
     x: { value: 0, min: -20, max: 20, step: 0.1 },

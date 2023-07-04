@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { selectCurrentScene } from './slices/scene'
 import Controls from './components/controls/Controls'
 import Console from './components/console/Console'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid'
 import Scene1 from './components/scenes/Scene1'
 import Scene2 from './components/scenes/Scene2'
@@ -18,7 +18,7 @@ const App = () => {
 
   return (
     <main className="app">
-      <div className="ctrl_cnsl_cntr select-none">
+      <div className="ctrl_cnsl_cntr">
         <div className="fixed z-50 left-0 bottom-0 p-4">
           { show  && <EyeIcon onClick={() => setShow(false)} className="text-white h-16 w-16 hover:text-black" /> }
           { !show && <EyeSlashIcon onClick={() => setShow(true)} className="text-white h-16 w-16 hover:text-black" /> }
