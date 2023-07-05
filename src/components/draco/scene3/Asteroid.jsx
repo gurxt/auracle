@@ -10,7 +10,7 @@ export function Asteroid(props) {
   const { nodes, materials } = useGLTF('/asteroid-body-draco-transformed.glb')
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Asterioid_Body.geometry} material={materials['Asteroid Rock.002']} position={[0, -8.153, 0.097]} scale={8} />
+      <mesh geometry={nodes.Asterioid_Body.geometry} material={materials['Asteroid Rock.002']} position={[0.011, -12.319, 3.686]} scale={16} />
     </group>
   )
 }

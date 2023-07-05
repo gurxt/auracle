@@ -6,7 +6,7 @@ Command: npx gltfjsx@6.2.5 .\public\themis-shrine-draco.glb --transform
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
-export function ThemisShrine(props) {
+export function Model(props) {
   const { nodes, materials } = useGLTF('/themis-shrine-draco-transformed.glb')
   return (
     <group {...props} dispose={null}>

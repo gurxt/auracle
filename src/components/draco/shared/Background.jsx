@@ -5,7 +5,6 @@ import { useControls } from "leva"
 import { useFrame } from "@react-three/fiber"
 import { useRef } from "react"
 import { MathUtils } from "three"
-import { SolarSystem } from "./SolarSystem"
 
 const Background = () => {
   const ref = useRef()
