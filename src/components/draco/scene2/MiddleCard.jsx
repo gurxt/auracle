@@ -24,8 +24,8 @@ export function MiddleCard({ cardClicked, handleCardClicked, url }) {
   })
 
 
-  const random = useLoader(TextureLoader, `../../../assets/tarots/${url}`)
-  const back_card = useLoader(TextureLoader, '../../../assets/tarots/back.jpg')
+  const random = useLoader(TextureLoader, `/tarots/${url}`)
+  const back_card = useLoader(TextureLoader, '/tarots/back.jpg')
   const card = new THREE.MeshBasicMaterial({ map: random })
   const back = new THREE.MeshBasicMaterial({ map: back_card })
   const black = new THREE.MeshBasicMaterial({ color: 'black' })
