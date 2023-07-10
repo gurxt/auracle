@@ -40,7 +40,7 @@ export function LeftMiddleMirror({ setTransition, camera, handleClick }) {
     >
       <group ref={ref} position={[-4.219, 2.223, 13.397]} rotation={[Math.PI / 2, 0, -0.681]} scale={[3.375, 0.113, 2.856]}>
         <mesh geometry={nodes.Cube002.geometry} material={materials.Glass} />
-        <mesh geometry={nodes.Cube002_1.geometry} material={materials.Material} />
+        <mesh geometry={nodes.Cube002.geometry} material={materials.Glass} />
       </group>
     </group>
   )

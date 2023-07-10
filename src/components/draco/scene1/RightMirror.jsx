@@ -40,7 +40,7 @@ export function RightMirror({ setTransition, camera, handleClick }) {
     >
       <group ref={ref} position={[-8.006, 2.223, 8.464]} rotation={[Math.PI / 2, 0, 0.843]} scale={[3.012, 0.112, 2.856]}>
         <mesh geometry={nodes.Cube005.geometry} material={materials['Glass.003']} />
-        <mesh geometry={nodes.Cube005_1.geometry} material={materials['Material.008']} />
+        <mesh geometry={nodes.Cube005.geometry} material={materials['Glass.003']} />
       </group>
     </group>
   )
