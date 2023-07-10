@@ -48,12 +48,11 @@ const Scene1 = () => {
     vec.set(mouse.x * 0.75, mouse.y * 1 + 2.5, camera.position.z)
     camera.position.lerp(vec, 0.025)
     camera.lookAt(0, 2, 2)
-    if (transition.value)
-      camera.lookAt(transition.look.x, 2, transition.look.z)
   })
 
   return (
       <>
+      <Dome transition={transition.value} />
       <LeftMirror        camera={camera} setTransition={setTransition} handleClick={handleClick} />
       <LeftMiddleMirror  camera={camera} setTransition={setTransition} handleClick={handleClick} />
       <RightMiddleMirror camera={camera} setTransition={setTransition} handleClick={handleClick} />
@@ -64,7 +63,6 @@ const Scene1 = () => {
         penumbra={penumbra}
         angle={angle}
       >
-        <mesh><sphereGeometry /></mesh>
       </spotLight>
       <ambientLight intensity={0.2} />
     </>
