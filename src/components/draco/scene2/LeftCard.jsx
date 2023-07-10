@@ -23,8 +23,8 @@ export function LeftCard({ cardClicked, handleCardClicked, url }) {
       : MathUtils.lerp(ref.current.rotation.y, rotation, 0.025)
   })
 
-  const random = useLoader(TextureLoader, `/src/assets/tarots/${url}`)
-  const back_card = useLoader(TextureLoader, '/src/assets/tarots/back.jpg')
+  const random = useLoader(TextureLoader, `../../../assets/tarots/${url}`)
+  const back_card = useLoader(TextureLoader, '../../../assets/tarots/back.jpg')
   const card = new THREE.MeshBasicMaterial({ map: random })
   const back = new THREE.MeshBasicMaterial({ map: back_card })
   const black = new THREE.MeshBasicMaterial({ color: 'black' })
