@@ -45,9 +45,9 @@ const Scene1 = () => {
 
 
   useFrame(({ mouse }) => {
-    vec.set(mouse.x * 0.75, mouse.y * 1 + 2.5, camera.position.z)
-    camera.position.lerp(vec, 0.025)
-    camera.lookAt(0, 2, 2)
+    // vec.set(mouse.x * 0.75, mouse.y * 1 + 2.5, camera.position.z)
+    // camera.position.lerp(vec, 0.025)
+    camera.lookAt(0, 2, 4)
     if (transition.value)
       camera.lookAt(transition.look.x, 2, transition.look.z)
   })
@@ -67,6 +67,7 @@ const Scene1 = () => {
       >
         <mesh><sphereGeometry /></mesh>
       </spotLight>
+      <OrbitControls position={[0, 2, 4]} />
       <ambientLight intensity={0.2} />
     </>
   )

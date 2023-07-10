@@ -1,6 +1,6 @@
 import './App.css'
 import { Canvas } from '@react-three/fiber'
-import { Loader } from '@react-three/drei'
+import { Loader, Stats } from '@react-three/drei'
 import { useSelector } from 'react-redux'
 import { selectCurrentScene } from './slices/scene'
 import Controls from './components/controls/Controls'
@@ -29,6 +29,7 @@ const App = () => {
       <>
         <Canvas dpr={window.devicePixelRatio} camera={{ position: [0, 0, 2] }} shadows>
           <Background />
+          <Stats />
           { currScene === 1 && <Scene1 /> }
           { currScene === 2 && <Scene2 /> }
           { currScene === 3 && <Scene3 /> }
