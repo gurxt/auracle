@@ -17,12 +17,10 @@ export function LeftMiddleMirror({ setTransition, camera, handleClick }) {
   const ref = useRef() 
 
   useFrame(() => {
-    if (!selected) {
-      ref.current.children[0].material.opacity = MathUtils.lerp(ref.current.children[0].material.opacity, hovered ? 1 : 0.2, 0.025)
-      ref.current.children[1].material.opacity = MathUtils.lerp(ref.current.children[1].material.opacity, hovered ? 1 : 0.2, 0.025)
-    } else {
-      ref.current.children[0].material.opacity = MathUtils.lerp(ref.current.children[0].material.opacity, 1, 0.025)
-      ref.current.children[1].material.opacity = MathUtils.lerp(ref.current.children[1].material.opacity, 1, 0.025)
+    ref.current.children[0].material.opacity = MathUtils.lerp(ref.current.children[0].material.opacity, hovered ? 1 : 0.2, 0.025)
+    ref.current.children[1].material.opacity = MathUtils.lerp(ref.current.children[1].material.opacity, hovered ? 1 : 0.2, 0.025)
+
+    if (selected) {
       vec.set(4, camera.position.y - 3, 12)
       camera.position.lerp(vec, 0.015)
     }

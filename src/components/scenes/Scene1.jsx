@@ -45,7 +45,7 @@ const Scene1 = () => {
 
 
   useFrame(({ mouse }) => {
-    vec.set(mouse.x * 0.75, mouse.y * 1 + 2.5, camera.position.z)
+    vec.set(mouse.x * 0.75, -mouse.y * 1 + 2.5, camera.position.z)
     camera.position.lerp(vec, 0.025)
     camera.lookAt(0, 2, 2)
     if (transition.value)
@@ -55,7 +55,10 @@ const Scene1 = () => {
   return (
       <>
       <Dome transition={transition.value} />
-    
+      <LeftMirror        camera={camera} setTransition={setTransition} handleClick={handleClick} />
+      <LeftMiddleMirror  camera={camera} setTransition={setTransition} handleClick={handleClick} />
+      <RightMiddleMirror camera={camera} setTransition={setTransition} handleClick={handleClick} />
+      <RightMirror       camera={camera} setTransition={setTransition} handleClick={handleClick} />
       <spotLight
         position={[x, y, z]}
         intensity={intensity}
